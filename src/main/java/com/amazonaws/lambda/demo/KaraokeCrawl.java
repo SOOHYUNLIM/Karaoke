@@ -12,11 +12,15 @@ public class KaraokeCrawl implements RequestHandler<Object, String> {
     @Override
     public String handleRequest(Object input, Context context) {
     	
-//        CrawlService<SongDto> crawlService = new GeumyoungServiceImpl();
-//        
+        CrawlService<SongDto> crawlService = new GeumyoungServiceImpl();
+        
 //        crawlService.crawlAndSaveCache();
-    	RedisUtil.saveList(null);
-    	System.out.println(RedisUtil.test());
+        
+        System.out.println(RedisUtil.test());
+        System.out.println(RedisUtil.test());
+        System.out.println(RedisUtil.test());
+        System.out.println(RedisUtil.test());
+        System.out.println(RedisUtil.test());
         return "Crawling SUCCESS!";
     }
 

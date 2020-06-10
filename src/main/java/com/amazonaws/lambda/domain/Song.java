@@ -4,7 +4,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@ToString
 public class Song {
 
 	private int no;

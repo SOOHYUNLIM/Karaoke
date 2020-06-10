@@ -11,6 +11,7 @@ import com.amazonaws.lambda.data.RedisUtil;
 import com.amazonaws.lambda.domain.Song;
 import com.amazonaws.lambda.dto.SongDto;
 import com.amazonaws.lambda.service.CrawlService;
+import com.amazonaws.lambda.util.ObjectUtil;
 import com.amazonaws.lambda.util.Youtube;
 
 public class GeumyoungServiceImpl implements CrawlService<SongDto> {
@@ -20,15 +21,16 @@ public class GeumyoungServiceImpl implements CrawlService<SongDto> {
 		AtomicInteger rank = new AtomicInteger();
 		Function<SongDto, Song> function = dto -> {
 			dto.setRank(rank.incrementAndGet());
-			dto.setYoutube(Youtube.search(dto.getTitle() + " 노래방"));
-			System.out.println(dto);
+//			dto.setYoutube(Youtube.search(dto.getTitle() + " 노래방"));
 			return dto.toEntity();
 		};
 		for (Geumyoung category : Geumyoung.values()) {
 			//요부분을 멀티 쓰레드 사용할 것!
 			List<Song> chart = GeumyongCrawling.getChart(category.getParams()).stream().map(function)
 					.collect(Collectors.toList());
-			RedisUtil.saveList(chart);
+
+			System.out.println("===크롤링 완료===");
+			RedisUtil.saveList(category.name() ,chart);
 		}
 	}
 

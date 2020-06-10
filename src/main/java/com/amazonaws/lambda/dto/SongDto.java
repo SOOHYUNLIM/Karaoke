@@ -7,12 +7,10 @@ import com.amazonaws.lambda.domain.Song;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @Builder
-@ToString
 public class SongDto {
 
 	private int rank;
