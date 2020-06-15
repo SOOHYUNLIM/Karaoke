@@ -1,6 +1,5 @@
 package com.amazonaws.lambda.demo;
 
-import com.amazonaws.lambda.data.RedisUtil;
 import com.amazonaws.lambda.dto.SongDto;
 import com.amazonaws.lambda.service.CrawlService;
 import com.amazonaws.lambda.service.impl.GeumyoungServiceImpl;
@@ -11,7 +10,6 @@ public class KaraokeCrawl implements RequestHandler<Object, String> {
 
     @Override
     public String handleRequest(Object input, Context context) {
-    	
         CrawlService<SongDto> crawlService = new GeumyoungServiceImpl();
         
         crawlService.crawlAndSaveCache();

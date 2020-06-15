@@ -22,7 +22,7 @@ public class GeumyoungServiceImpl implements CrawlService<SongDto> {
 
 		Function<SongDto, Song> function = dto -> {
 			dto.setRank(rank.incrementAndGet());
-//			dto.setYoutube(Youtube.search(dto.getTitle() + " 노래방"));
+			dto.setYoutube(Youtube.search(dto.getTitle() + " 노래방"));
 			return dto.toEntity();
 		};
 
@@ -30,8 +30,9 @@ public class GeumyoungServiceImpl implements CrawlService<SongDto> {
 			// 요부분을 멀티 쓰레드 사용할 것!
 			List<Song> chart = GeumyongCrawling.getChart(category.getParams()).stream().map(function)
 					.collect(Collectors.toList());
-
+			rank.set(0);
 			RedisUtil.saveList(category.name(), chart);
+			System.out.println(category.name() + " 완료! ==> " + chart.get(0));
 		}
 	}
 
