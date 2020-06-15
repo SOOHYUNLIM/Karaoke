@@ -28,7 +28,8 @@ public class GeumyongCrawling {
 	private static SongDto mapper(Elements elements) {
 		List<String> data = eachText(elements);
 		return SongDto.builder().title(data.get(4)).singer(data.get(5)).composer(data.get(6)).writer(data.get(6))
-				.creationDate(StringUtil.fomatLocalDate("yyyy.MM.dd", data.get(7))).lyrics(data.get(8)).build();
+//				.creationDate(StringUtil.fomatLocalDate("yyyy.MM.dd", data.get(7)))
+				.lyrics(data.get(8)).build();
 	}
 
 	public static List<SongDto> getChart(GeumyoungParam param) {

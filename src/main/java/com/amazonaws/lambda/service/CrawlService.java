@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface CrawlService<T> {
 
-	List<T> getChart();
+	List<T> getChart(String category);
 	
 	void crawlAndSaveCache();
 }

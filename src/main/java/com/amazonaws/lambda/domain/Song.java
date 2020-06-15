@@ -5,10 +5,11 @@ import java.time.LocalDateTime;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Getter
-@ToString
+@NoArgsConstructor
 public class Song {
 
 	private int no;
@@ -23,7 +24,7 @@ public class Song {
 
 	private String writer;
 
-	private LocalDate creationDate;
+//	private LocalDate creationDate;
 
 	private String lyrics;
 	
@@ -38,7 +39,7 @@ public class Song {
 		this.singer = singer;
 		this.composer = composer;
 		this.writer = writer;
-		this.creationDate = creationDate;
+//		this.creationDate = creationDate;
 		this.lyrics = lyrics;
 		this.youtube = youtube;
 	}

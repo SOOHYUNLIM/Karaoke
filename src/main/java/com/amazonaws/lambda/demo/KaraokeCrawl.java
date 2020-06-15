@@ -14,13 +14,8 @@ public class KaraokeCrawl implements RequestHandler<Object, String> {
     	
         CrawlService<SongDto> crawlService = new GeumyoungServiceImpl();
         
-//        crawlService.crawlAndSaveCache();
+        crawlService.crawlAndSaveCache();
         
-        System.out.println(RedisUtil.test());
-        System.out.println(RedisUtil.test());
-        System.out.println(RedisUtil.test());
-        System.out.println(RedisUtil.test());
-        System.out.println(RedisUtil.test());
         return "Crawling SUCCESS!";
     }
 

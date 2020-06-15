@@ -6,7 +6,8 @@ import lombok.Getter;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum Geumyoung {
-	BALLADE(2, 12);
+	BALLADE(2, 12),
+	DANCE(2, 6);
 	
 	private int songGb;
 	

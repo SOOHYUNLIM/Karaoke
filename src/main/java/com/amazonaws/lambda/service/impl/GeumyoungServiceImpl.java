@@ -19,24 +19,25 @@ public class GeumyoungServiceImpl implements CrawlService<SongDto> {
 	@Override
 	public void crawlAndSaveCache() {
 		AtomicInteger rank = new AtomicInteger();
+
 		Function<SongDto, Song> function = dto -> {
 			dto.setRank(rank.incrementAndGet());
 //			dto.setYoutube(Youtube.search(dto.getTitle() + " 노래방"));
 			return dto.toEntity();
 		};
+
 		for (Geumyoung category : Geumyoung.values()) {
-			//요부분을 멀티 쓰레드 사용할 것!
+			// 요부분을 멀티 쓰레드 사용할 것!
 			List<Song> chart = GeumyongCrawling.getChart(category.getParams()).stream().map(function)
 					.collect(Collectors.toList());
 
-			System.out.println("===크롤링 완료===");
-			RedisUtil.saveList(category.name() ,chart);
+			RedisUtil.saveList(category.name(), chart);
 		}
 	}
 
 	@Override
-	public List<SongDto> getChart() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<SongDto> getChart(String category) {
+		return RedisUtil.getList(category, Song.class).stream()
+				.map(entity -> ObjectUtil.entityToDto(entity, SongDto.class)).collect(Collectors.toList());
 	}
 }
